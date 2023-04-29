@@ -1,0 +1,16 @@
+@import "./scss/colors";
+@import "./scss/bootstrap";
+@import "./scss/home";
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+
+.focus:focus {
+  outline: none;
+}
