@@ -39,10 +39,11 @@ export default function Login() {
           </div>
 
           <div className="d-flex justify-content-center my-4">
-            <button className="btn text-white px-3 fs-4 fw-bold bg-primary">
+            <button className="btn w-100 text-white px-3 fs-4 fw-bold bg-primary">
               Log in
             </button>
           </div>
+          <p className="text-decoration-underline">Forgot your password?</p>
           <p className="text-center text-decoration-underline">OR</p>
 
           {/* Sign In With Other */}

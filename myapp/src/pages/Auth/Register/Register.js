@@ -43,7 +43,7 @@ export default function Register() {
             </div>
 
             <div className="d-flex justify-content-center my-4">
-              <button className="btn text-white fs-4 fw-bold bg-primary">
+              <button className="btn w-100 text-white fs-4 fw-bold bg-primary">
                 Sign Up With Email
               </button>
             </div>
