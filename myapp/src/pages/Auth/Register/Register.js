@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import appimg from "../../../assets/imgs/register/app downloads.jpg";
 import businesimg from "../../../assets/imgs/register/in business.jpg";
 import tasksimg from "../../../assets/imgs/register/tasks completed.jpg";
 import proUserimg from "../../../assets/imgs/register/pro users.jpg";
+import { Link } from "react-router-dom";
 
 export default function Register() {
+
+  let initialState = {
+    email : "",
+    password : ""
+  }
+
+  const [state,setState] = useState(initialState)
+  const [hidePass,setHidePass] = useState(true)
+
+
+
+  const HandleChange = (e) => {
+    
+    setState({...state,[e.target.name]: e.target.value})
+
+  }
+  const handlePassType = () => {
+    setHidePass(!hidePass);
+  };
+
+  console.log(state);
+
+
+
+
+
   return (
     <>
       <div className="container">
@@ -22,6 +49,8 @@ export default function Register() {
                   id="email"
                   placeholder="Enter Your email..."
                   type="email"
+                  name="email"
+                  onChange={HandleChange}
                 />
               </div>
             </div>
@@ -34,10 +63,17 @@ export default function Register() {
                   className="w-100 py-1 border-0 focus"
                   id="password"
                   placeholder="Enter Your email..."
-                  type="email"
+                  type= {hidePass?  "password" : "text"}
+                  name="password"
+                  onChange={HandleChange}
                 />
-                <span className="px-2">
-                  <i class="fa-solid fa-eye-slash"></i>
+                <span className="px-2" onClick={handlePassType}>
+                  {hidePass?
+                    <i class="fa-solid fa-eye-slash"></i>
+                    :
+                    <i class="fa-solid fa-eye"></i>
+
+                  }
                 </span>
               </div>
             </div>
@@ -67,7 +103,7 @@ export default function Register() {
             </div>
             <p className="text-center">
               Already signed Up?{" "}
-              <span className="text-decoration-underline">Go to login</span>
+              <Link to='/auth/login' className="text-decoration-underline">Go to login</Link>
             </p>
           </div>
 

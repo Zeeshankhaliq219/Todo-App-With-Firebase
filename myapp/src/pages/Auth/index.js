@@ -9,9 +9,9 @@ export default function index() {
   return (
     <>
       <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="forgetpassword" element={<ForgetPassword />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>

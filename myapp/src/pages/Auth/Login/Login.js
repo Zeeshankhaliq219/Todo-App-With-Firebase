@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import logimg from "../../../assets/imgs/login_img.png";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+
+
+  let initialState = {
+    email: "",
+    password: "",
+  };
+
+  const [state, setState] = useState(initialState);
+  const [hidePass, setHidePass] = useState(true);
+
+  const HandleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+  const handlePassType = () => {
+    setHidePass(!hidePass);
+  };
+
+  console.log(state);
+
   return (
     <div className="container">
       <div className="row">
@@ -19,6 +38,8 @@ export default function Login() {
                 id="email"
                 placeholder="Enter Your email..."
                 type="email"
+                name="email"
+                onChange={HandleChange}
               />
             </div>
           </div>
@@ -31,10 +52,16 @@ export default function Login() {
                 className="w-100 py-1 border-0 focus"
                 id="password"
                 placeholder="Enter Your email..."
-                type="email"
+                type={hidePass ? "password" : "text"}
+                name="password"
+                onChange={HandleChange}
               />
-              <span className="px-2">
-                <i class="fa-solid fa-eye-slash"></i>
+              <span className="px-2" onClick={handlePassType}>
+                {hidePass ? (
+                  <i class="fa-solid fa-eye-slash"></i>
+                ) : (
+                  <i class="fa-solid fa-eye"></i>
+                )}
               </span>
             </div>
           </div>
@@ -44,7 +71,12 @@ export default function Login() {
               Log in
             </button>
           </div>
-          <Link to="forgetpassword" className="text-black text-decoration-underline">Forgot your password?</Link>
+          <Link
+            to="/auth/forgetpassword"
+            className="text-black text-decoration-underline"
+          >
+            Forgot your password?
+          </Link>
           <p className="text-center text-decoration-underline">OR</p>
 
           {/* Sign In With Other */}
@@ -65,7 +97,9 @@ export default function Login() {
           </div>
           <p className="text-center">
             Don't have an account?
-            <span className="text-decoration-underline">Sign up</span>
+            <Link to="/auth/register" className="text-decoration-underline">
+              Sign up
+            </Link>
           </p>
         </div>
 
