@@ -1,5 +1,6 @@
 import React from "react";
 import logimg from "../../../assets/imgs/login_img.png";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -43,7 +44,7 @@ export default function Login() {
               Log in
             </button>
           </div>
-          <p className="text-decoration-underline">Forgot your password?</p>
+          <Link to="forgetpassword" className="text-black text-decoration-underline">Forgot your password?</Link>
           <p className="text-center text-decoration-underline">OR</p>
 
           {/* Sign In With Other */}
