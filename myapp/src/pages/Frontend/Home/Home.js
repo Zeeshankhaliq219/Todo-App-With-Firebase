@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 export default function Home() {
   return (
@@ -14,9 +15,9 @@ export default function Home() {
               task manager and to-do list app.
             </p>
             <div className="d-flex justify-content-center mb-3">
-              <button className="btn bg-primary text-white fw-bold px-5 py-2">
+              <Link to="/adddata" className="btn bg-primary text-white fw-bold px-5 py-2">
                 Start Now
-              </button>
+              </Link>
             </div>
           </div>
         </div>

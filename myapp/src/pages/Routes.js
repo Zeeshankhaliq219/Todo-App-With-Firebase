@@ -10,8 +10,7 @@ export default function Index() {
   return (
       <BrowserRouter>
           <Header />
-          <main >
-              
+          <main >          
           <Routes>
               <Route path='/*' element={<Frontend />} />
               <Route path='/Auth*' element={<Auth />} />
