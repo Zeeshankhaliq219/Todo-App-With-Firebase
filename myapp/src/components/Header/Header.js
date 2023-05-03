@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+
 
 export default function Header() {
+
+  const { IsLogin, SignOut } = useContext(AuthContext);
+
+
+  
+
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -24,22 +33,35 @@ export default function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item me-md-5">
-              <Link
-                to="/auth/login"
-                className="bg-primary text-white fw-bold fs-3 py-1 px-3 rounded text-decoration-none"
-              >
-                <span className='mb-4'>Login</span>
-              </Link>
-            </li>
-            <li className="nav-item me-md-5">
-              <Link
-                to="/auth/register"
-                className="bg-primary text-white  py-1 px-3 rounded fw-bold fs-3 text-decoration-none"
-              >
-                Register
-              </Link>
-            </li>
+            {!IsLogin ? (
+              <>
+                <li className="nav-item me-md-5">
+                  <Link
+                    to="/auth/login"
+                    className="bg-primary text-white fw-bold fs-3 py-1 px-3 rounded text-decoration-none"
+                  >
+                    <span className="mb-4">Login</span>
+                  </Link>
+                </li>
+                <li className="nav-item me-md-5">
+                  <Link
+                    to="/auth/register"
+                    className="bg-primary text-white  py-1 px-3 rounded fw-bold fs-3 text-decoration-none"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item me-md-5">
+                <button
+                    onClick={ SignOut }
+                  className="bg-primary text-white border-0  py-1 px-3 rounded fw-bold fs-3 text-decoration-none"
+                >
+                  LogOut
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>

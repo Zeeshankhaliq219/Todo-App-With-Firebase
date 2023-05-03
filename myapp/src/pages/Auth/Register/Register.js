@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import appimg from "../../../assets/imgs/register/app downloads.jpg";
 import businesimg from "../../../assets/imgs/register/in business.jpg";
 import tasksimg from "../../../assets/imgs/register/tasks completed.jpg";
 import proUserimg from "../../../assets/imgs/register/pro users.jpg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
+
 
 export default function Register() {
+
+  const { CreateUser } = useContext(AuthContext);
 
   let initialState = {
     email : "",
@@ -26,7 +30,19 @@ export default function Register() {
     setHidePass(!hidePass);
   };
 
-  console.log(state);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      
+    await  CreateUser(state.email , state.password)
+    } catch (error) {
+      console.log(error)
+    }
+
+    console.log(state);
+
+  }
+
 
 
 
@@ -69,9 +85,9 @@ export default function Register() {
                 />
                 <span className="px-2" onClick={handlePassType}>
                   {hidePass?
-                    <i class="fa-solid fa-eye-slash"></i>
+                    <i className="fa-solid fa-eye-slash"></i>
                     :
-                    <i class="fa-solid fa-eye"></i>
+                    <i className="fa-solid fa-eye"></i>
 
                   }
                 </span>
@@ -79,7 +95,7 @@ export default function Register() {
             </div>
 
             <div className="d-flex justify-content-center my-4">
-              <button className="btn w-100 text-white fs-4 fw-bold bg-primary">
+              <button onClick={handleSubmit} className="btn w-100 text-white fs-4 fw-bold bg-primary">
                 Sign Up With Email
               </button>
             </div>
@@ -90,13 +106,13 @@ export default function Register() {
             <div>
               <div className="border rounded d-flex justify-content-center align-items-center py-2 my-3">
                 <span className="pe-3 fs-5">
-                  <i class="fa-brands fa-google fs-3 text-danger"></i>
+                  <i className="fa-brands fa-google fs-3 text-danger"></i>
                 </span>
                 <span className="ps-2 fs-5">Continue With Google</span>
               </div>
               <div className="border rounded d-flex justify-content-center align-items-center py-2 my-3">
                 <span className="pe-3  ">
-                  <i class="fa-brands fa-facebook text-info fs-3"></i>
+                  <i className="fa-brands fa-facebook text-info fs-3"></i>
                 </span>
                 <span className="ps-2 fs-5">Continue With Facebook</span>
               </div>

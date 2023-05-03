@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logimg from "../../../assets/imgs/login_img.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
+
 
 export default function Login() {
+
+
+  const {CreateExistingUser} = useContext(AuthContext)
 
 
   let initialState = {
@@ -15,11 +20,23 @@ export default function Login() {
 
   const HandleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
+
+  
   };
   const handlePassType = () => {
     setHidePass(!hidePass);
   };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await CreateExistingUser(state.email, state.password);
+    } catch (error) {
+      console.log(error);
+    }
 
+    console.log(state);
+  };
   console.log(state);
 
   return (
@@ -67,7 +84,7 @@ export default function Login() {
           </div>
 
           <div className="d-flex justify-content-center my-4">
-            <button className="btn w-100 text-white px-3 fs-4 fw-bold bg-primary">
+            <button onClick={handleSubmit} className="btn w-100 text-white px-3 fs-4 fw-bold bg-primary">
               Log in
             </button>
           </div>
